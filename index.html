@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cafeteria Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Cafeteria Management System</h1>
+  <nav>
+    <button onclick="showSection('order')">Place Order</button>
+    <button onclick="showSection('queue')">Order Queue</button>
+    <button onclick="showSection('admin')">Admin Panel</button>
+  </nav>
+
+  <section id="order" class="section">
+    <h2>Place an Order</h2>
+    <form id="order-form">
+      <input type="text" id="customer-name" placeholder="Customer Name" required><br>
+      <select id="item"></select><br>
+      <input type="number" id="quantity" placeholder="Quantity" required min="1"><br>
+      <button type="submit">Submit Order</button>
+    </form>
+  </section>
+
+  <section id="queue" class="section hidden">
+    <h2>Order Queue</h2>
+    <ul id="order-queue"></ul>
+  </section>
+
+  <section id="admin" class="section hidden">
+    <h2>Admin Panel</h2>
+    <div>
+      <input type="text" id="new-item-name" placeholder="New Item Name">
+      <input type="number" id="new-item-price" placeholder="Price">
+      <button onclick="addMenuItem()">Add Item</button>
+    </div>
+    <div>
+      <input type="text" id="delete-item-name" placeholder="Item to Delete">
+      <button onclick="deleteMenuItem()">Delete Item</button>
+    </div>
+    <div id="admin-orders"></div>
+    <div id="daily-summary"></div>
+  </section>
+
+  <section id="bill" class="section hidden">
+    <h2>Customer Bill</h2>
+    <div id="bill-content"></div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
