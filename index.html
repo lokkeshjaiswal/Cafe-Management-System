@@ -1,54 +1,61 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Cafeteria Management</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Cafeteria Management System</h1>
-  <nav>
-    <button onclick="showSection('order')">Place Order</button>
-    <button onclick="showSection('queue')">Order Queue</button>
-    <button onclick="showSection('admin')">Admin Panel</button>
-  </nav>
+  <header>
+    <h1>Cafeteria Management System</h1>
+    <nav>
+      <button onclick="showSection('menu')">Menu</button>
+      <button onclick="showSection('order')">Place Order</button>
+      <button onclick="showSection('queue')">Order Queue</button>
+      <button onclick="showSection('history')">Order History</button>
+      <button onclick="showSection('admin')">Admin Panel</button>
+      <button onclick="toggleTheme()">Toggle Theme</button>
+    </nav>
+  </header>
+  <main>
+    <section id="menu" class="section">
+      <h2>Menu</h2>
+      <input type="text" id="search" placeholder="Search menu..." onkeyup="searchMenu()" />
+      <div id="menu-items" class="grid"></div>
+    </section>
 
-  <section id="order" class="section">
-    <h2>Place an Order</h2>
-    <form id="order-form">
-      <input type="text" id="customer-name" placeholder="Customer Name" required><br>
-      <select id="item"></select><br>
-      <input type="number" id="quantity" placeholder="Quantity" required min="1"><br>
-      <button type="submit">Submit Order</button>
-    </form>
-  </section>
+    <section id="order" class="section hidden">
+      <h2>Place an Order</h2>
+      <form id="order-form">
+        <label>Customer Name: <input type="text" id="customer-name" required /></label>
+        <label>Item: <select id="food-select"></select></label>
+        <label>Quantity: <input type="number" id="quantity" min="1" required /></label>
+        <button type="submit">Submit Order</button>
+      </form>
+    </section>
 
-  <section id="queue" class="section hidden">
-    <h2>Order Queue</h2>
-    <ul id="order-queue"></ul>
-  </section>
+    <section id="queue" class="section hidden">
+      <h2>Order Queue</h2>
+      <ul id="order-queue"></ul>
+    </section>
 
-  <section id="admin" class="section hidden">
-    <h2>Admin Panel</h2>
-    <div>
-      <input type="text" id="new-item-name" placeholder="New Item Name">
-      <input type="number" id="new-item-price" placeholder="Price">
-      <button onclick="addMenuItem()">Add Item</button>
-    </div>
-    <div>
-      <input type="text" id="delete-item-name" placeholder="Item to Delete">
-      <button onclick="deleteMenuItem()">Delete Item</button>
-    </div>
-    <div id="admin-orders"></div>
-    <div id="daily-summary"></div>
-  </section>
+    <section id="history" class="section hidden">
+      <h2>Order History</h2>
+      <ul id="order-history"></ul>
+    </section>
 
-  <section id="bill" class="section hidden">
-    <h2>Customer Bill</h2>
-    <div id="bill-content"></div>
-  </section>
-
+    <section id="admin" class="section hidden">
+      <h2>Admin Panel</h2>
+      <form id="admin-form">
+        <input type="text" id="new-item-name" placeholder="Item Name" required />
+        <input type="number" id="new-item-price" placeholder="Price" required />
+        <input type="text" id="new-item-image" placeholder="Image URL" required />
+        <button type="submit">Add Item</button>
+      </form>
+      <ul id="admin-items-list"></ul>
+    </section>
+  </main>
   <script src="script.js"></script>
 </body>
 </html>
